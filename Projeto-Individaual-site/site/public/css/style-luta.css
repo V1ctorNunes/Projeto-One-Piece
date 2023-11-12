@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,500;1,400;1,700&family=Inter:wght@200&family=Poppins:wght@300;400;500;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,500;1,400;1,700&family=Inter:wght@200&family=Poppins:wght@300;400;500;700&family=Seymour+One&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0%;
+}
+
+/* FUNDO DA TELA INICIAL */
+#background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+}
+
+#background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#background::after {
+  content: '';
+
+  width: inherit;
+  height: inherit;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(109deg, rgba(10, 12, 16, 0.99) 15%, rgba(10, 12, 16, 0.7) 50%, rgba(10, 12, 16, 0.99) 85%);
+}
+
+/* HEADER */
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+}
+
+header {
+  width: 1440px;
+  display: flex;
+  align-items: center;
+  column-gap: 64px;
+  margin-top: 22px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  column-gap: 48px;
+  list-style: none;
+
+}
+
+.navigation__link {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  transform: translateY(-5px);
+}
+
+.navigation__link:hover {
+  color: orange;
+}
+
+.navigation__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 98%;
+  height: 2px;
+  background: orange;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s;
+}
+
+.navigation__link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+
+.navigation_login_and_cadastro {
+  display: flex;
+  margin-left: auto;
+  margin-right: 120px;
+  /* column-gap: 20px; */
+}
+
+.navigation_login_and_cadastro img {
+  width: 200px;
+}
+
+.button_login {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  background-color: orange;
+  transition: all 0.4s;
+  border-radius: 0 100px 0 100px;
+}
+
+.button_login a {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.button_login:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+  cursor: pointer;
+  transition: all 0.4s;
+  background-color: white;
+}
+
+.button_cadastro a {
+  margin-right: 45px;
+  font-weight: 500;
+}
+
+.button_cadastro {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  width: 120px;
+  transition: all 0.4s;
+  border-radius: 0 100px 0 100px;
+}
+
+.button_cadastro:hover {
+  cursor: pointer;
+  transition: all 0.4s;
+  background-color: orange;
+  transform: translateY(-5px);
+}
+
+.navigation_login_and_cadastro a {
+  width: 30px;
+  height: 30px;
+  list-style: none;
+  text-decoration: none;
+
+}
+
+/* MAIN */
+main {
+  margin-top: 5%;
+  background-color: rgba(255, 255, 255, 0.697);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.game-board {
+  background: url(../assets/WANO.jpg);
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+  border: 1px solid black;
+  margin: 0;
+  position: relative;
+  border-radius: 10px;
+}
+
+.name-kaido {
+  margin-left: auto;
+}
+
+
+.life {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 68px;
+}
+
+.text {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Seymour One', sans-serif;
+}
+
+.text span {
+  color: red;
+  font-family: 'Seymour One', sans-serif;
+}
+
+.life-luffy {
+  background-color: rgb(255, 0, 0);
+  width: 500px;
+  height: 20px;
+  border-radius: 0 0 5px 5px;
+
+}
+
+.name-luffy {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+#life-luffy {
+  background-color: rgb(0, 255, 8);
+  width: 500px;
+  height: 20px;
+  border-radius: 0 0 5px 5px;
+}
+
+.life-kaido {
+  background-color: rgb(255, 0, 0);
+  width: 500px;
+  height: 20px;
+  border-radius: 0 0 5px 5px;
+
+}
+
+.name-kaido {
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#life-kaido {
+  background-color: rgb(0, 255, 8);
+  width: 500px;
+  height: 20px;
+  border-radius: 0 0 5px 5px;
+
+}
+
+#luffy_life {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#kaido_life {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.kaido {
+  position: absolute;
+  bottom: 0;
+  width: 400px;
+  right: 80px;
+  /* animation: pipe-animation 5s; */
+}
+
+.kaido_atack {
+  position: absolute;
+  bottom: 0;
+  width: 800px;
+  right: 1px;
+}
+
+
+@keyframes pipe-animation {
+  from {
+    right: 0;
+  }
+
+  to {
+    right: 100%;
+  }
+}
+
+.luffy {
+  position: absolute;
+  bottom: 0;
+  width: 335px;
+  left: 30px;
+}
+
+.luffy-parado {
+  position: absolute;
+  bottom: 62px;
+  width: 90px;
+  left: 140px;
+}
+
+
+@keyframes jump {
+
+  0% {
+    bottom: 0;
+  }
+
+  50% {
+    bottom: 140px;
+  }
+
+  100% {
+    bottom: 0;
+  }
+
+}
+
+.esconder {
+  display: none;
+}
+
+.golpe {
+  position: absolute;
+  bottom: 40px;
+  width: 420px;
+  left: 30px;
+}
+
+.jump {
+  animation: jump 500ms ease-out;
+}
