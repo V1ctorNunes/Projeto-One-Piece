@@ -328,17 +328,61 @@ main {
 /* DIV QUE IRA TER A HISTORIA */
 .historia {
   display: none;
-  flex-direction: row;
+  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.656);
   font-weight: bold;
   color: black;
-  width: 900px;
-  height: 400px;
+  width: 1000px;
+  height: fit-content;
   border-radius: 10px;
+}
+
+.containerHistoria {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.title-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fechar {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  width: 50px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.4s;
+  margin-right: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fechar:hover {
+  color: white;
+  font-weight: bold;
+  background-color: orange;
 }
 
 .historia img {
   margin: 20px 0 0 20px;
+}
+
+.story-img {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .story {

@@ -62,12 +62,12 @@
         
 
         
-       <img class="kaido" id="kaidoParado" src="assets/kaidoParado-unscreen-unscreen.gif">
-       <img class="kaido_atack esconder" id="kaidoAtack" src="assets/kaidoGolpe-unscreen-unscreen.gif">
+       <img class="kaido esconder" id="kaidoParado" src="assets/kaidoParado-unscreen-unscreen.gif">
+       <img class="kaido_atack " id="kaidoAtack" src="assets/kaidoGolpe-unscreen-unscreen.gif">
 
        <!-- <img class="luffy-parado" id="luffy_parado" src="assets/luffyParado.png"> -->
-       <img class="golpe esconder" id="luffy_golpe" src="assets/golpeLuffy-unscreen.gif">
-       <img class="luffy-parado" id="luffy_parado" src="assets/luffyParado (2).png">
+       <img class="golpe " id="luffy_golpe" src="assets/golpeLuffy-unscreen-unscreen.gif">
+       <img class="luffy-parado esconder" id="luffy_parado" src="assets/luffyParado (2).png">
        <img class="luffy esconder" id="luffy_move" src="assets/luffy-unscreen.gif" >
 
        
@@ -79,19 +79,19 @@
 </main>
 </div>
 </body>
+<script src="js/script-luta.js"></script>
 </html>
 
 <script>
 
-var x = 0
-var y = 0
+var luffy_x = 0
+var Luffy_y = 0
 var golpe = 0
 
 var repeticao = window.setInterval(atackKaido, 8000)
 
 
 function atackKaido() {    
-
 
     var kaidoParado = document.getElementById('kaidoParado')
     var kaidoAtack = document.getElementById('kaidoAtack')
@@ -115,9 +115,9 @@ window.addEventListener("keydown",function(event){
     var tecla = event.keyCode
 
     if ( tecla == "68"){
-        x = x + 10
-        document.getElementById("luffy_move").style.left=x+"px"
-        document.getElementById('luffy_golpe').style.left=x+"px"
+        luffy_x = luffy_x + 10
+        document.getElementById("luffy_move").style.left=luffy_x+"px"
+        document.getElementById('luffy_golpe').style.left=luffy_x+"px"
 
         var parado = document.getElementById('luffy_parado')
         var correr = document.getElementById('luffy_move')
@@ -127,9 +127,9 @@ window.addEventListener("keydown",function(event){
 
     }
      if ( tecla == "65"){
-        x = x - 10
-        document.getElementById("luffy_move").style.left=x+"px"
-        document.getElementById('luffy_golpe').style.left=x+"px"
+        luffy_x = luffy_x - 10
+        document.getElementById("luffy_move").style.left=luffy_x+"px"
+        document.getElementById('luffy_golpe').style.left=luffy_x+"px"
     }
     if ( tecla == "69") {
         var golpe = document.getElementById('luffy_golpe')
@@ -165,7 +165,9 @@ window.addEventListener("keydown",function(event){
 })
 
     
-
+// function colizao(x, kaidoParado) {
+//   const luffy_x = 
+// }
     
     
 

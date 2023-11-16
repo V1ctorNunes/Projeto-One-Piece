@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style-person.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <script src="js/script-personagem.js"></script>
   <title>Bando do Luffy</title>
 </head>
 <body>
@@ -53,70 +54,76 @@
     <p class="line"></p>
     </p>
 
-    <div class="containerCards">
-      <div class="style-cards luffy" onclick="luffy()">
-        <p>Monkey D. Luffy</p> <br>
-        <img class="person-img" src="./assets/bando-img/luffy.jpeg" alt="Luffy">
-      </div>
+    <div class="containerCards" id="cards1">
+        <div class="style-cards luffy" onclick="luffy()" id="luffy">
+          <p>Monkey D. Luffy</p> <br>
+          <img class="person-img" src="./assets/bando-img/luffy.jpeg" alt="Luffy">
+        </div>
 
-      <div class="style-cards zoro">
-        <p>Roronoa Zoro</p> <br>
-        <img class="person-img" src="./assets/bando-img/zoro.jpg" alt="Zoro">
-      </div>
+        <div class="style-cards zoro" onclick="zoro()" id="zoro">
+          <p>Roronoa Zoro</p> <br>
+          <img class="person-img" src="./assets/bando-img/zoro.jpg" alt="Zoro">
+        </div>
 
-      <div class="style-cards nami">
-        <p>Nami</p> <br>
-        <img class="person-img" src="./assets/bando-img/nami.png" alt="Nami">
-      </div>
+        <div class="style-cards nami" onclick="nami()" id="nami">
+          <p>Nami</p> <br>
+          <img class="person-img" src="./assets/bando-img/nami.png" alt="Nami">
+        </div>
 
-      <div class="style-cards ussop">
-        <p>Ussop</p> <br>
-        <img class="person-img" src="./assets/bando-img/ussop.jpg" alt="Ussop">
+        <div class="style-cards ussop" onclick="ussop()" id="ussop">
+          <p>Ussop</p> <br>
+          <img class="person-img" src="./assets/bando-img/ussop.jpg" alt="Ussop">
+        </div>
+    </div>
+
+    <div id="historia_person" class="historia"> 
+      <button onclick="fechar()" id="fechar_button" class="fechar">
+        X
+      </button>
+      <h2 class="title-card" id="personagem_nome"></h2>
+      <div class="containerHistoria" id="conteudo">
       </div>
     </div>
 
-    <div id="historia_person" class="historia">
-    </div>
-
-    <div class="containerCards">
-      <div class="style-cards sanji">
+    <div class="containerCards" id="cards2">
+      <div class="style-cards sanji" id="sanji">
         <p>Sanji</p> <br>
         <img class="person-img" src="./assets/bando-img/sanji.jpg" alt="Sanji">
       </div>
 
-      <div class="style-cards chopper">
+      <div class="style-cards chopper" id="chopper">
         <p>Tony Tony Chopper</p> <br>
         <img class="person-img" src="./assets/bando-img/chopper.jpg" alt="Chopper">
       </div>
 
-      <div class="style-cards Robin">
+      <div class="style-cards Robin" id="robin">
         <p>Nico Robin</p> <br>
         <img class="person-img robin" src="./assets/bando-img/Nico Robin.jpg" alt="Robin">
       </div>
 
-      <div class="style-cards Franky">
+      <div class="style-cards Franky" id="franky">
         <p>Franky</p> <br>
         <img class="person-img" src="./assets/bando-img/Franky.jpg" alt="Franky">
       </div>
     </div>
 
-    <div class="containerCards">
-      <div class="style-cards Brook">
+    <div class="containerCards" id="cards3" >
+      <div class="style-cards Brook" id="brook">
         <p>Brook</p> <br>
         <img class="person-img" src="./assets/bando-img/Brook.jpg" alt="Brook">
       </div>
 
-      <div class="style-cards Jinbe">
+      <div class="style-cards Jinbe" id="jinbe">
         <p>Jinbei</p> <br>
         <img class="person-img" src="./assets/bando-img/Jinbei.jpg" alt="Jinbe">
       </div>
 
-      <div class="style-cards Yamato">
+      <div class="style-cards Yamato" id="yamato">
         <p>Yamato</p> <br>
         <img class="person-img" src="./assets/bando-img/Yamato.jpg" alt="Yamato">
       </div>
 
-      <div class="style-cards vivi">
+      <div class="style-cards vivi" id="vivi">
         <p>Nefertari Vivi</p> <br>
         <img class="person-img" src="./assets/bando-img/Nefertari Vivi.jpg" alt="Vivi">
       </div>
@@ -151,21 +158,14 @@
 
 <script>
 
-  function luffy() {
 
-    var display = document.getElementById("historia_person").style.display
+function fechar() {
 
-    if (display == 'none') {
-      document.getElementById("historia_person").style.display = 'flex'
+  var display = document.getElementById("historia_person").style.display = 'none'
+  var cards1 = document.getElementById("cards1").style.display = 'flex'
+  var cards1 = document.getElementById("cards2").style.display = 'flex'
+  var cards1 = document.getElementById("cards3").style.display = 'flex'
+  
 
-        historia_person.innerHTML = `<img class="person-img" src="./assets/bando-img/luffy.jpeg" alt="">
-        <p class="story">
-          Luffy é o capitão dos Piratas do Chapéu de Palha. Quando criança, ele comeu uma Gomu Gomu no Mi, uma fruta que lhe deu o poder do homem-borracha em troca de sua habilidade de nadar. Filho de Monkey D. Dragon, o jovem sonha em se tornar o Rei dos Piratas, título que ninguém ocupa desde a execução de Gol D.
-        </p>`
-    } else {
-      document.getElementById("historia_person").style.display = 'none'
-    }
-
-    
-  }
+}
 </script>
