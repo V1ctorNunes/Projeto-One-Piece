@@ -41,7 +41,7 @@ body {
 }
 
 header {
-  width: 1440px;
+  width: 1240px;
   display: flex;
   align-items: center;
   column-gap: 60px;
@@ -116,8 +116,8 @@ main {
   justify-content: center;
   align-items: center;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.696) 10%, rgba(255, 166, 0, 0.87) 50%, rgba(0, 0, 0, 0.696) 90%);
-  width: 550px;
-  height: 95vh;
+  width: 500px;
+  height: 140vh;
   color: white;
   border-radius: 10px;
 }
@@ -248,7 +248,7 @@ main {
 
 /* FOOTER */
 footer {
-  margin-top: 17%;
+  margin-top: 43%;
   display: flex;
   width: auto;
   height: auto;

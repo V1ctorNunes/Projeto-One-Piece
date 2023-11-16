@@ -41,7 +41,7 @@ body {
 }
 
 header {
-  width: 1440px;
+  width: 1240px;
   display: flex;
   align-items: center;
   column-gap: 64px;
@@ -109,6 +109,7 @@ header {
 .button_login a {
   margin-right: 10px;
   font-weight: 500;
+  color: black;
 }
 
 .button_login:hover {
@@ -120,6 +121,7 @@ header {
 }
 
 .button_cadastro a {
+  color: black;
   margin-right: 45px;
   font-weight: 500;
 }
@@ -151,12 +153,13 @@ header {
 
 /* MAIN */
 main {
+  margin-top: 8%;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1240px;
 }
 
 main img {
@@ -224,6 +227,7 @@ main img {
 
 /* FOOTER */
 footer {
+  margin-top: 27%;
   display: flex;
   width: auto;
   height: auto;

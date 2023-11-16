@@ -113,7 +113,7 @@ function nami() {
     <br> <br>
     Após uma batalha recheada de carga dramática, Luffy consegue derrotar Arlong e seus piratas, libertando Nami da divida e também os habitantes da Vila Cocoyasi, levando a navegadora a tomar a decisão de entrar para a tripulação permanente dos Chapéus de Palha.
 
-    <h3>Roupas de Nami/h3>
+    <h3>Roupas de Nami</h3>
     Ao todo, Nami ostenta mais de 50 trajes diferentes ao longo do anime de One Piece. Você pode conferir todas as roupas de Nami na galeria abaixo.
 
     <h3>Habiliades da Nami</h3>

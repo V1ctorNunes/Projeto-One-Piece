@@ -41,10 +41,10 @@ body {
 }
 
 header {
-  width: 1440px;
+  width: 1240px;
   display: flex;
   align-items: center;
-  column-gap: 64px;
+  column-gap: 60px;
   margin-top: 22px;
 }
 
@@ -97,54 +97,9 @@ header {
   /* column-gap: 20px; */
 }
 
-.button_login {
-  display: flex;
-  justify-content: center;
-  width: 80px;
-  background-color: orange;
-  transition: all 0.4s;
-  border-radius: 0 100px 0 100px;
-}
 
-.button_login a {
-  margin-right: 10px;
-  font-weight: 500;
-}
-
-.button_login:hover {
-  opacity: 1;
-  transform: translateY(-5px);
-  cursor: pointer;
-  transition: all 0.4s;
-  background-color: white;
-}
-
-.button_cadastro a {
-  margin-right: 45px;
-  font-weight: 500;
-}
-
-.button_cadastro {
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  width: 120px;
-  transition: all 0.4s;
-  border-radius: 0 100px 0 100px;
-}
-
-.button_cadastro:hover {
-  cursor: pointer;
-  transition: all 0.4s;
-  background-color: orange;
-  transform: translateY(-5px);
-}
-
-.navigation_login_and_cadastro a {
-  width: 30px;
-  height: 30px;
-  list-style: none;
-  text-decoration: none;
+.navigation_login_and_cadastro img {
+  width: 150px;
 }
 
 /* MAIN */
@@ -161,8 +116,8 @@ main {
   justify-content: center;
   align-items: center;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.696) 10%, rgba(255, 166, 0, 0.87) 50%, rgba(0, 0, 0, 0.696) 90%);
-  width: 550px;
-  height: 72vh;
+  width: 500px;
+  height: 100vh;
   color: white;
   border-radius: 10px;
 }
@@ -293,7 +248,7 @@ main {
 
 /* FOOTER */
 footer {
-  margin-top: 5%;
+  margin-top: 27%;
   display: flex;
   width: auto;
   height: auto;

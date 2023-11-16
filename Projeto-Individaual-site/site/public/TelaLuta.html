@@ -45,7 +45,7 @@
             <div id="luffy_life">
             <p class="name-luffy">Monkey D. Luffty</p>
             <div class="life-luffy">
-                <div id="life-luffy"></div>
+                <div id="life_luffy"></div>
             </div>
             </div>
 
@@ -54,19 +54,25 @@
             <div id="kaido_life">
             <p class="name-kaido">Kaido</p>
             <div class="life-kaido">
-                <div id="life-kaido"></div>
+                <div id="life_kaido"></div>
             </div> 
             </div>  
         </div> 
+
+
     <div class="game-board">    
         
 
+      <div class="div2"></div>
+      <div class="div1"></div>
+      <div class="golpe_div"></div>
+      
+       <img class="kaido " id="kaidoParado" src="assets/kaidoParado-unscreen-unscreen.gif">
+       <img class="kaido_atack esconder" id="kaidoAtack" src="assets/kaidoGolpe-unscreen-unscreen.gif">
         
-       <img class="kaido esconder" id="kaidoParado" src="assets/kaidoParado-unscreen-unscreen.gif">
-       <img class="kaido_atack " id="kaidoAtack" src="assets/kaidoGolpe-unscreen-unscreen.gif">
-
        <!-- <img class="luffy-parado" id="luffy_parado" src="assets/luffyParado.png"> -->
        <img class="golpe " id="luffy_golpe" src="assets/golpeLuffy-unscreen-unscreen.gif">
+       
        <img class="luffy-parado esconder" id="luffy_parado" src="assets/luffyParado (2).png">
        <img class="luffy esconder" id="luffy_move" src="assets/luffy-unscreen.gif" >
 
@@ -78,6 +84,29 @@
 
 </main>
 </div>
+
+<footer> 
+  <div class="footer__info">
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates blanditiis tempore commodi soluta dolores doloribus perspiciatis minima consequatur accusantium dolorum facere architecto nisi aliquid natus nam, quibusdam atque, hic fugiat!
+    </p>
+  </div>
+
+  <div class="footer__social">
+    <a class="icon-wpp"><i class="bi bi-whatsapp"></i></a>
+    <a class="icon-instagram"><i class="bi bi-instagram"></i></a>
+    <a class="icon-gitHub"><i class="bi bi-github"></i></a>
+    <a class="icon-linkedin"><i class="bi bi-linkedin"></i></a>
+  </div>
+
+  <div class="email">
+    <p>Mande um E-mail <br>
+      <div class="icon-email">
+        <input type="email"> <a> <i class="bi bi-envelope"></i></a>
+      </div>  
+    </p>
+  </div>
+</footer>
 </body>
 <script src="js/script-luta.js"></script>
 </html>
@@ -128,6 +157,7 @@ window.addEventListener("keydown",function(event){
     }
      if ( tecla == "65"){
         luffy_x = luffy_x - 10
+        colisao() 
         document.getElementById("luffy_move").style.left=luffy_x+"px"
         document.getElementById('luffy_golpe').style.left=luffy_x+"px"
     }
@@ -169,6 +199,12 @@ window.addEventListener("keydown",function(event){
 //   const luffy_x = 
 // }
     
+function colisao() {
+
+  var vida_luffy = document.getElementById('life_luffy')
+
+
+}
     
 
  
