@@ -88,8 +88,8 @@ function zoro() {
 function nami() {
   var display = document.getElementById("historia_person").style.display
   var cards1 = document.getElementById("cards1").style.display
-  var cards1 = document.getElementById("cards2").style.display
-  var cards1 = document.getElementById("cards3").style.display
+  var cards2 = document.getElementById("cards2").style.display
+  var cards3 = document.getElementById("cards3").style.display
 
   
   if (display == 'none') {

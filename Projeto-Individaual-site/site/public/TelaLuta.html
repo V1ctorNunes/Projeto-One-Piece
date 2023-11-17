@@ -63,15 +63,15 @@
     <div class="game-board">    
         
 
-      <div class="div2"></div>
-      <div class="div1"></div>
-      <div class="golpe_div"></div>
+      <div class="div2" id="kaido_colisao"></div>
+      <div class="div1" id="luffy_colisao"></div>
+      <div class="golpe_div" id="golpe_colisao"></div>
       
        <img class="kaido " id="kaidoParado" src="assets/kaidoParado-unscreen-unscreen.gif">
        <img class="kaido_atack esconder" id="kaidoAtack" src="assets/kaidoGolpe-unscreen-unscreen.gif">
         
        <!-- <img class="luffy-parado" id="luffy_parado" src="assets/luffyParado.png"> -->
-       <img class="golpe " id="luffy_golpe" src="assets/golpeLuffy-unscreen-unscreen.gif">
+       <img class="golpe  " id="luffy_golpe" src="assets/golpeLuffy-unscreen-unscreen.gif">
        
        <img class="luffy-parado esconder" id="luffy_parado" src="assets/luffyParado (2).png">
        <img class="luffy esconder" id="luffy_move" src="assets/luffy-unscreen.gif" >
@@ -115,6 +115,8 @@
 
 var luffy_x = 0
 var Luffy_y = 0
+var golpe_colisao = 220
+var luffy_colisao = 165
 var golpe = 0
 
 var repeticao = window.setInterval(atackKaido, 8000)
@@ -145,8 +147,13 @@ window.addEventListener("keydown",function(event){
 
     if ( tecla == "68"){
         luffy_x = luffy_x + 10
+        golpe_colisao = golpe_colisao + 10
+        luffy_colisao = luffy_colisao + 10
+
         document.getElementById("luffy_move").style.left=luffy_x+"px"
         document.getElementById('luffy_golpe').style.left=luffy_x+"px"
+        document.getElementById('golpe_colisao').style.left=golpe_colisao+"px"
+        document.getElementById('luffy_colisao').style.left=luffy_colisao+"px"
 
         var parado = document.getElementById('luffy_parado')
         var correr = document.getElementById('luffy_move')
@@ -157,9 +164,15 @@ window.addEventListener("keydown",function(event){
     }
      if ( tecla == "65"){
         luffy_x = luffy_x - 10
+        golpe_colisao = golpe_colisao - 10
+        luffy_colisao = luffy_colisao - 10
         colisao() 
         document.getElementById("luffy_move").style.left=luffy_x+"px"
         document.getElementById('luffy_golpe').style.left=luffy_x+"px"
+        document.getElementById('golpe_colisao').style.left=golpe_colisao+"px"
+        document.getElementById('luffy_colisao').style.left=luffy_colisao+"px"
+
+
     }
     if ( tecla == "69") {
         var golpe = document.getElementById('luffy_golpe')
@@ -201,7 +214,6 @@ window.addEventListener("keydown",function(event){
     
 function colisao() {
 
-  var vida_luffy = document.getElementById('life_luffy')
 
 
 }
