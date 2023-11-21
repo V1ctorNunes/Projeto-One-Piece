@@ -6,7 +6,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/", function (req, res) {
-    res.render("TelaQuiz.html");
+    res.render("TelaQuiz2.html");
 });
 
 router.get("/", function (req, res) {

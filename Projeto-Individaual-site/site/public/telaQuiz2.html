@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="css/style-quiz2.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="background">
+    <video loop muted autoplay>
+      <source src="./assets/abertura-onepiece-atualizado.mp4">
+    </video>
+  </div>
+
+  <div id="app">
+    <header>
+      <ul class="navigation">
+        <li>
+          <a href="./index.html" class="navigation__link">Home</a>
+        </li>
+        <li>
+          <a href="TelaPersonagens.html" class="navigation__link">Personagens</a>
+        </li>
+        <li>
+          <a href="" class="navigation__link">Sobre o Projeto</a>
+        </li>
+      </ul>
+
+      <div class="navigation_login_and_cadastro">  
+        <img src="./assets/onepiece.png" alt="">
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="orientacao-quiz">
+          <p>
+            COMO JOGA O QUIZ?
+          </p>
+          
+          <span>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam aperiam, error ipsam deleniti minima est alias amet sit aliquam laudantium sapiente delectus eius? Reprehenderit quia vel eos, beatae officiis et.
+          </span>
+        </div>
+        <div class="questoes-container esconder">
+          <div class="container-pontuacao">
+          <p class="numeroQuestao">numero</p>
+          </p>
+          </div>
+          <span class="questao">Questao</span>
+          <div class="respostas-container">
+            <button class="resposta button">1</button>
+            <button class="resposta button">2</button>
+            <button class="resposta button">3</button>
+            <button class="resposta button">4</button>
+          </div>
+        </div>
+    
+        <div class="controles">
+          <button class="comecarQuiz button" onclick="comecarQuiz()" >Começar Quiz</button>
+          <button class="proximaPergunta button esconder" onclick="proximaQuestao()">Proxima Pergunta</button>
+        </div>
+      </div>
+
+      <div class="ranking">
+        <h1>Ranking</h1>
+        <div class="info-usuario">
+          <p>usuario</p>
+          <p>Tentativas</p>
+          <p>Score</p>
+          <p>Acertos</p>
+        </div>
+          <div id="rankingList">
+            <p>
+              <span>usuario</span>
+              <span>tentativas</span>
+              <span>pontos</span>
+              <span>acertos</span>
+            </p>
+          </div> 
+        
+      </div>
+    </main>
+    
+
+    <footer> 
+      <div class="footer__info">
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates blanditiis tempore commodi soluta dolores doloribus perspiciatis minima consequatur accusantium dolorum facere architecto nisi aliquid natus nam, quibusdam atque, hic fugiat!
+        </p>
+      </div>
+  
+      <div class="footer__social">
+        <a class="icon-wpp"><i class="bi bi-whatsapp"></i></a>
+        <a class="icon-instagram"><i class="bi bi-instagram"></i></a>
+        <a class="icon-gitHub"><i class="bi bi-github"></i></a>
+        <a class="icon-linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+  
+      <div class="email">
+        <p>Mande um E-mail <br>
+          <div class="icon-email">
+            <input type="email"> <a> <i class="bi bi-envelope"></i></a>
+          </div>  
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  
+</body>
+</html>
+
+<script>
+  // NUMERO DE QUESTOES
+  var perguntas = 0
+
+  // MATRIZES
+  var idUsuario = sessionStorage.ID_USUARIO
+  var nomeUsuario = sessionStorage.NOME_USUARIO
+  var tentativasUsuario = sessionStorage.RANKING_TENTAIVAS
+  var totalCorretas = 0
+  var score = 0
+  var contador = 0
+  var posicao = 0
+  var tentativas = []
+  var performanceTotal = []
+  var correta = []
+
+  // VAR USADA PARA COMECAR O QUIZ
+  var orientacaoQuiz = document.querySelector('.orientacao-quiz')
+  var comecar = document.querySelector('.comecarQuiz')
+
+  // VAR USADA PARA APARECER AS QUESTOES
+  var questoesContainer = document.querySelector('.questoes-container')
+  var respostasContainer = document.querySelector('.respostas-container')
+
+  //  VAR USADA PARA PUXAR AS PERGUNTAS
+  var numeroQuestao = document.querySelector('.numeroQuestao')
+  var questao = document.querySelector('.questao')
+  var proximaPergunta = document.querySelector('.proximaPergunta')
+
+function comecarQuiz() {
+    
+   //  adicionando classe de display none
+   comecar.classList.add('esconder')
+   orientacaoQuiz.classList.add('esconder')
+
+   questoesContainer.classList.remove('esconder')
+   contador++
+
+   ranking_estatico()
+   proximaQuestao()
+}
+
+function proximaQuestao() {
+  // VERIFICANDO SE TEM ALGUM ELEMENTO FILHO DENTROS DA DIV
+  while(respostasContainer.firstChild) {
+    // SE TIVER ALGUM ELEMENTO FILHO, ELE IRA SER REMOVIDO
+    // CASO AINDA TENHA, SEMPRE IRA ENTRAR AQUI
+    respostasContainer.removeChild(respostasContainer.firstChild)
+  }
+
+  if(questoes.length == perguntas) {
+    return finalizar()
+  }
+  // PEGA OS ELEMENTOS DA POSIÇÃO (PERGUNTAS)
+  // questoes = objeto onde tem as questoes
+  numeroQuestao.textContent = questoes[perguntas].numero
+  questao.textContent = questoes[perguntas].questao
+
+
+  questoes[perguntas].respostas.forEach(resposta => {
+    var novaResposta = document.createElement("button")
+    novaResposta.classList.add("button", "resposta")
+    novaResposta.textContent = resposta.text
+
+    if (resposta.correta) {
+      novaResposta.dataset.correta = resposta.correta
+    }
+
+    respostasContainer.appendChild(novaResposta)
+
+    // ADICIONANDO EVENTO DE CLICK PARA SABER SE O USUARIO ACERTOU
+    novaResposta.addEventListener("click", respostaSelecionada)
+  })
+}
+
+function respostaSelecionada(event) {
+  // QUAL FOI O ELEMENTO QUE O USUARIO CLICOU
+  var respostaClicada = event.target
+
+  if (respostaClicada.dataset.correta) {
+    document.body.classList.add('respostaCorreta')
+    totalCorretas++
+    score += 5
+  }
+
+  // SELECIONANDO TODOS OS ELEMENTOS QUE TEM A CLASSE RESPOSTA
+  document.querySelectorAll(".resposta").forEach(button => {
+    if(button.dataset.correta) {
+      button.classList.add('respostaCorreta')
+      
+    } else {
+      button.classList.add('respostaErrada')
+    }
+
+    // DESABILITANDO AS RESPOSTA PARA QUE O USUARIO NÃO ESCOLHE OUTRA RESPOSTA
+    button.disabled = true
+  })
+
+  proximaPergunta.classList.remove('esconder')
+  
+  perguntas++
+  
+}
+
+function finalizar() {
+  var totalQuestoes = questoes.length
+  performance = Math.floor(totalCorretas * 100 / totalQuestoes) + score
+
+
+  tentativas.push(contador)
+  
+  ranking()
+  
+
+  proximaPergunta.classList.add('esconder')
+
+  if(performance <= 49) {
+    questoesContainer.innerHTML = 
+    `
+    <div class="container-finish" id="container-final">
+      <img src="./assets/bando-luffy-PhotoRoom.png-PhotoRoom.png" width="300px">
+
+      <div class="final-mensagem">
+        <p class="resultado"> 
+          resultado
+        </p>
+        <p class="mensagem-final"> 
+          Voce acertou ${totalCorretas} de ${totalQuestoes} <br>
+          <span>Tentativas: ${tentativas.length}</span>
+          <span>Resultado: <b class="baixo"> ${performance}</b></span>
+        </p>
+        <a class="button-final" onclick="ranking()">
+        Refazer Quiz
+        </a>
+      </div>
+    </div>
+    `
+  } else if (performance >= 50 && performance <= 75) {
+    questoesContainer.innerHTML = 
+    `
+    <div class="container-finish" id="container-final">
+      <img src="./assets/bando-luffy-PhotoRoom.png-PhotoRoom.png" width="300px">
+
+      <div class="final-mensagem">
+        <p class="resultado"> 
+          resultado
+        </p>
+        <p class="mensagem-final"> 
+          Voce acertou ${totalCorretas} de ${totalQuestoes} <br>
+          <span>Tentativas: ${tentativas.length}</span>
+          <span>Resultado: <b class="medio"> ${performance}</b></span>  
+        </p>
+        <a class="button-final" onclick="ranking()">
+        Refazer Quiz
+        </a>
+      </div>
+    </div>
+    `
+  } else {
+    questoesContainer.innerHTML = 
+    `
+    <div class="container-finish" id="container-final">
+      <img src="./assets/bando-luffy-PhotoRoom.png-PhotoRoom.png" width="300px">
+
+      <div class="final-mensagem">
+        <p class="resultado"> 
+          resultado
+        </p>
+        <p class="mensagem-final"> 
+          Voce acertou ${totalCorretas} de ${totalQuestoes} <br>
+          <span>Tentativas: ${tentativas.length}</span>
+          <span>Resultado: <b class="alto"> ${performance} </b></span>
+          
+        </p>
+        <button class="button-final" onclick="ranking()">
+        Refazer Quiz
+        </button>
+      </div>
+    </div>
+    `
+  }
+    
+}
+
+function ranking() {
+
+  performanceTotal.push(performance)
+  correta.push(totalCorretas)
+
+  var maior = Number(performanceTotal[0])
+  var menor = Number(performanceTotal[0])
+
+  var tamanhoLista = performanceTotal.length
+
+  rankingList.innerHTML = ""
+
+  for (var i = 0; i < tamanhoLista; i++) {
+    var scoreAtual = performanceTotal[i]
+    var tentativaAtual = tentativas[i]
+    var acertosAtual = correta[i]
+    
+    if (score > maior) {
+      maior = scoreAtual 
+    }
+    
+    if (score < menor) {
+      menor = scoreAtual
+    }
+
+    rankingList.innerHTML += ` 
+
+    <p>
+      <span>${nomeUsuario} </span>
+      <span>${tentativaAtual}</span>
+      <span>${scoreAtual} </span>
+      <span>${acertosAtual}</span>
+    </p>      
+
+     <br>`
+    
+  }
+      
+  // ENVIANDO PARA O BANCO
+     // fetch envia para rotas
+     fetch("/quiz/ranking", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // body ele leva os dados para usuario.js
+    body: JSON.stringify({
+      // crie um atributo que recebe o valor recuperado aqui
+      // Agora vá para o arquivo routes/usuario.js
+      usuarioServer: idUsuario,
+      tentativasServer: tentativas,
+      scoreServer: performance,
+      acertosServer: totalCorretas,
+      
+    }),
+  })
+
+  .then(function (resposta) {
+
+            console.log("ESTOU NO THEN DO entrar()!")
+            
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+
+                 
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar ao mandar pro banco");
+
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+  return false;
+}
+
+function ranking_estatico() {
+  fetch("/quiz/puxaRanking", {
+    method: "GET",
+    
+  })
+
+  .then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+
+                  rankingList.innerHTML += ` 
+
+                  <p>
+                    <span>${nomeUsuario} </span>
+                    <span>${tentativaAtual}</span>
+                    <span>${scoreAtual} </span>
+                    <span>${acertosAtual}</span>
+                  </p>      
+
+                  <br>`
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar ao mandar pro banco");
+
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+  return false;
+}
+var questoes = [{
+  numero: "1/10",
+  questao: "Qual é o personagem principal de One Piece?",
+  respostas: [
+    { text: "Monkey D. Luffy", correta: true},
+    { text: "Roronoa Zoro", correta: false},
+    { text: "Sanji", correta: false},
+    { text: "Nami", correta:false}
+  ]
+},
+  {
+    numero: "2/10",
+    questao: "Quantas raças existem no mundo de One Piece",
+    respostas: [
+    { text: "12", correta: false},
+    { text: "14", correta: false},
+    { text: "15", correta: true},
+    { text: "16", correta:false}
+  ]
+}, 
+{
+    numero: "3/10",
+    questao: "Quem é o irmão de Monkey D. Luffy?",
+    respostas: [
+    { text: "Sabo", correta: false},
+    { text: "Portas D. Ace", correta: true},
+    { text: "Roronoa Zoro", correta: false},
+    { text: "Sanji", correta:false}
+  ]
+}
+]
+</script>

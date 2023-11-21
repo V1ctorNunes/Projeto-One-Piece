@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,500;1,400;1,700&family=Inter:wght@200&family=Poppins:wght@300;400;500;700&display=swap');
 
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  flex-direction: column;
 }
 
 /* FUNDO DA TELA INICIAL */
@@ -114,13 +110,14 @@ button {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 10%;
   width: 800px;
 }
 
-.container-div {
+.container {
   display: flex;
   align-items: center;
   padding: 90px;
@@ -133,16 +130,17 @@ main {
   border-radius: 10px;
   color: white;
   box-shadow: 0px 0px 2px 2px;
+
 }
 
-.text-question {
+.questoes-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.text-question p {
+.questoes-container span {
   flex-direction: column;
   display: flex;
   font-size: 22px;
@@ -150,16 +148,27 @@ main {
   font-weight: 300;
   align-items: center;
   justify-content: center;
-
 }
 
-.answars-container {
+.numeroQuestao {
+  display: flex;
+  margin-bottom: 50px;
+  margin-right: 350px;
+}
+
+.container-pontuacao {
+  display: flex;
+  margin-right: 150px;
+}
+
+
+.respostas-container {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.answars {
+.resposta {
   background-color: white;
   width: 400px;
   height: 40px;
@@ -173,20 +182,24 @@ main {
   transition: all 0.4s;
 }
 
-.answars:not(:disabled):hover {
+.resposta:not(:disabled):hover {
   background-color: orange;
   color: white;
   transition: all 0.4s;
 }
 
-.controls-container {
+.resposta:disabled {
+  cursor: not-allowed;
+}
+
+.controles {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 50px;
 }
 
-.controls-container button {
+.controles button {
   width: 200px;
   height: 40px;
   border-radius: 5px;
@@ -197,10 +210,9 @@ main {
   outline: none;
   transition: all 0.4s;
   font-weight: bold;
-
 }
 
-.controls-container button:hover {
+.controles button:hover {
   background-color: orange;
   color: white;
   transition: all 0.4s;
@@ -208,8 +220,7 @@ main {
   font-weight: bold;
 }
 
-
-.hide {
+.esconder {
   display: none;
 }
 
@@ -229,36 +240,16 @@ main {
   margin-bottom: 40px;
 }
 
-.answarCorrect {
+.respostaCorreta {
   background-color: rgb(118, 235, 118);
   font-weight: bold;
 }
 
-.answarIncorret {
+.respostaErrada {
   background-color: rgb(225, 84, 84);
   font-weight: bold;
 }
 
-.mensagem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-  border-radius: 5px;
-  font-weight: bold;
-  width: 400px;
-  height: 30px;
-}
-
-.answars:disabled {
-  cursor: not-allowed;
-}
-
-#number_questions {
-  font-size: 33px;
-  font-weight: bold;
-  margin: 20px 0 40px 0;
-}
 
 .button-final {
   background-color: white;
@@ -306,17 +297,49 @@ main {
   border: 3px solid black;
   border-radius: 5px;
   width: 480px;
-  height: 350px;
+  height: 460px;
 }
 
 .final-mensagem span {
-  font-size: 18px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.final-mensagem p {
+  font-size: 20px;
+}
+
+.final-mensagem b {
+  margin-left: 10px;
+}
+
+.baixo {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.medio {
+  color: yellow;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.alto {
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .button-final {
+  display: flex;
   width: 200px;
   margin: 50px 0 20px 0;
-
+  color: black;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
 }
 
 .resultado {
@@ -330,9 +353,58 @@ main {
 
 }
 
-/* FOOTER */
+
+.ranking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  background: linear-gradient(140deg, rgba(0, 0, 0, 0.696) 10%, rgba(255, 166, 0, 0.87) 50%, rgba(0, 0, 0, 0.696) 90%);
+  margin-top: 40%;
+  width: 700px;
+  height: 1200px;
+  color: white;
+  border-radius: 10px;
+}
+
+.info-usuario {
+  margin-top: 10px;
+  text-transform: uppercase;
+  display: flex;
+  column-gap: 45px;
+  font-size: 20px;
+}
+
+
+#rankingList {
+  margin-right: 30px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#rankingList p {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+}
+
+#rankingList p span {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 30px;
+  border: 2px solid rgb(254, 254, 254);
+  width: 80px;
+}
+
+
+
+
+/* footer */
+
 footer {
-  width: auto;
+  width: 95.7%;
   height: auto;
   background-color: rgba(255, 255, 255, 0.418);
   font-size: 16px;
@@ -340,4 +412,53 @@ footer {
   flex-direction: column;
   padding: 40px;
   margin-top: 20%;
+  color: white;
+}
+
+.footer__info {
+  max-width: 700px;
+}
+
+.footer__social {
+  display: flex;
+  column-gap: 10px;
+}
+
+.footer__social a {
+  background-color: transparent;
+  border: none;
+  font-size: 35px;
+  padding-left: 10px;
+  color: white;
+}
+
+.email input {
+  border: none;
+  outline: none;
+  padding: 8px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.email p {
+  color: white;
+}
+
+.email div {
+  background-color: white;
+  width: 355px;
+  border-radius: 5px;
+}
+
+.email div a {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  align-items: center;
+}
+
+.email div a:hover {
+  color: orange;
+  cursor: pointer;
+  font-weight: bold;
 }

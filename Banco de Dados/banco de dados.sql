@@ -11,7 +11,7 @@ senha char(45)
 
 select * from usuario;
 
-create table quiz (
+create table ranking (
 idQuiz int primary key auto_increment,
 fkUsuario int,
 foreign key (fkUsuario) references usuario(idUsuario),
@@ -20,4 +20,17 @@ score int,
 acertos int
 );
 
-select * from quiz;
+select * from ranking;
+
+insert into ranking values 
+('2', '3', '115', '3')
+
+create table historico_tentativas (
+    idHistorico int primary key auto_increment,
+    fkUsuario int,
+    foreign key (fkUsuario) references usuario(idUsuario),
+    fkQuiz int unique,
+    foreign key (fkQuiz) references quiz(idQuiz),
+    dataTentativa datetime,
+    pontuacaoObtida int
+);
