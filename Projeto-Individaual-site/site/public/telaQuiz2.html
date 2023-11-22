@@ -399,7 +399,8 @@ function visualizarRankig() {
                     for (var i = 0; i < 3; i++) {
                         var usuario = resposta[i];
 
-                        rankingList.innerHTML += `${i + 1}º  <p>
+                        rankingList.innerHTML += `<p>
+                                                  <span> ${i + 1}º </span>
                                                   <span>${usuario.nickname}</span>
                                                   <span>${ranking.tentativas}</span>
                                                   <span>${ranking.score}</span>

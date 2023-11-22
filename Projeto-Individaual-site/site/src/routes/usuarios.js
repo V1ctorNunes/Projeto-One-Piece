@@ -13,7 +13,7 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
-router.post("/mostrar", function (req, res) {
+router.get("/mostrar", function (req, res) {
     usuarioController.mostrar(req, res);
 });
 module.exports = router;

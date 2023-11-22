@@ -186,6 +186,7 @@ main {
 .text {
   font-size: 17px;
   font-weight: 300;
+  text-align: justify;
 }
 
 .title {
@@ -200,7 +201,7 @@ main {
 
 /* footer */
 footer {
-  margin-top: 27%;
+  margin-top: 40%;
   display: flex;
   width: auto;
   height: auto;

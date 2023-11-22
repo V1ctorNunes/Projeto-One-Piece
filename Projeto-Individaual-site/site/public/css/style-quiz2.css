@@ -361,8 +361,8 @@ main {
   border: 1px solid black;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.696) 10%, rgba(255, 166, 0, 0.87) 50%, rgba(0, 0, 0, 0.696) 90%);
   margin-top: 40%;
-  width: 700px;
-  height: 1200px;
+  width: 900px;
+  height: fit-content;
   color: white;
   border-radius: 10px;
 }
@@ -371,8 +371,9 @@ main {
   margin-top: 10px;
   text-transform: uppercase;
   display: flex;
-  column-gap: 45px;
+  column-gap: 50px;
   font-size: 20px;
+  margin-left: 120px;
 }
 
 
