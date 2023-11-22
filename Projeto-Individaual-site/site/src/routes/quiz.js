@@ -7,7 +7,5 @@ router.post("/ranking", function (req, res) {
     quizController.ranking(req, res);
 });
 
-router.post("/puxaRanking", function (req, res) {
-    quizController.usuario(req, res);
-});
+
 module.exports = router;

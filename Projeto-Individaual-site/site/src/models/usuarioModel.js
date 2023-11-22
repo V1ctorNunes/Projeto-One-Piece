@@ -19,7 +19,20 @@ function cadastrar(nome, nickname, email, senha) {
     return database.executar(instrucao);
 }
 
+function mostrar() {
+    var instrucao = `
+    SELECT usuario.nickname AS Nickname, 
+	ranking.tentativas AS Tentativas,
+    ranking.score AS Pontos,
+    ranking.acertos AS Acertos
+	from ranking join usuario
+    on ranking.fkUsuario = usuario.idUsuario;
+      `;
+  
+      return database.executar(instrucao);
+  }
 module.exports = {
     entrar,
-    cadastrar
+    cadastrar,
+    mostrar
 };

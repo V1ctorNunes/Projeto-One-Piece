@@ -115,13 +115,14 @@
 </html>
 
 <script>
+   visualizarRankig()
+
   // NUMERO DE QUESTOES
   var perguntas = 0
 
   // MATRIZES
   var idUsuario = sessionStorage.ID_USUARIO
   var nomeUsuario = sessionStorage.NOME_USUARIO
-  var tentativasUsuario = sessionStorage.RANKING_TENTAIVAS
   var totalCorretas = 0
   var score = 0
   var contador = 0
@@ -130,6 +131,7 @@
   var performanceTotal = []
   var correta = []
 
+ 
   // VAR USADA PARA COMECAR O QUIZ
   var orientacaoQuiz = document.querySelector('.orientacao-quiz')
   var comecar = document.querySelector('.comecarQuiz')
@@ -152,7 +154,7 @@ function comecarQuiz() {
    questoesContainer.classList.remove('esconder')
    contador++
 
-   ranking_estatico()
+   
    proximaQuestao()
 }
 
@@ -380,45 +382,52 @@ function ranking() {
   return false;
 }
 
-function ranking_estatico() {
-  fetch("/quiz/puxaRanking", {
-    method: "GET",
-    
-  })
-
-  .then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+function visualizarRankig() {
+        fetch("/usuarios/mostrar", {
+            method: 'GET'
+        }).then(function (resposta) {
 
             if (resposta.ok) {
-                console.log(resposta);
+                if (resposta.status == 204) {
+                    console.log("nenhuma resposta encontrada")
+                }
 
-                resposta.json().then(json => {
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                  rankingList.innerHTML += ` 
+                    rankingList.innerHTML = "";
+                    for (var i = 0; i < 3; i++) {
+                        var usuario = resposta[i];
 
-                  <p>
-                    <span>${nomeUsuario} </span>
-                    <span>${tentativaAtual}</span>
-                    <span>${scoreAtual} </span>
-                    <span>${acertosAtual}</span>
-                  </p>      
+                        rankingList.innerHTML += `${i + 1}º  <p>
+                                                  <span>${usuario.nickname}</span>
+                                                  <span>${ranking.tentativas}</span>
+                                                  <span>${ranking.score}</span>
+                                                  <span>${ranking.acertos}</span>
+                                                </p> `
 
-                  <br>`
+                   
+
+                    }
+
+                    // for (var i = 3; i < resposta.length; i++) {
+                    //     var user = resposta[i];
+
+                    //     otherPlayersList.innerHTML += `${i + 1}º lugar <div class="ranking-item"> <h3>${user.nickname}</h3> 
+                    // <p> ${user.pontos} </p> </div> <br> `
+                    // }
 
                 });
-
             } else {
-
-                console.log("Houve um erro ao tentar ao mandar pro banco");
-
+                throw ('Houve um erro na API!');
             }
+        }).catch(function (resposta) {
+            console.error(resposta);
 
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+        });
 
-  return false;
-}
+
+    }
 var questoes = [{
   numero: "1/10",
   questao: "Qual é o personagem principal de One Piece?",
