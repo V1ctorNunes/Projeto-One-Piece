@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
   <link rel="stylesheet" href="css/style-quiz2.css">
-  <title>Document</title>
+  <link rel="icon" href="./assets/bandeira-luffy-removebg-preview.png">
+  <title>Quiz</title>
 </head>
 <body>
   <div id="background">
@@ -17,20 +18,35 @@
 
   <div id="app">
     <header>
+
       <ul class="navigation">
         <li>
-          <a href="./index.html" class="navigation__link">Home</a>
+          <a href="index.html" class="navigation__link">Home</a>
         </li>
         <li>
           <a href="TelaPersonagens.html" class="navigation__link">Personagens</a>
         </li>
         <li>
-          <a href="" class="navigation__link">Sobre o Projeto</a>
+          <a href="TelaSobre.html" class="navigation__link">Sobre o Projeto</a>
+        </li>
+        <li>
+          <a href="ranking.html" class="navigation__link">Ranking</a>
         </li>
       </ul>
 
       <div class="navigation_login_and_cadastro">  
-        <img src="./assets/onepiece.png" alt="">
+         <!-- <div class="button_login">
+          <a href="TelaLogin.html">Login</a>
+        </div>
+        <div class="button_cadastro">
+          <a href="./TelaCadastro.html">Cadastro</a>
+        </div> -->
+        <p class="perfil">
+          <a href="">
+          <span> Perfil </span>
+          <i class="bi bi-person-circle"></i>
+          </a>
+        </p>
       </div>
     </header>
 
@@ -64,25 +80,6 @@
           <button class="proximaPergunta button esconder" onclick="proximaQuestao()">Proxima Pergunta</button>
         </div>
       </div>
-
-      <div class="ranking">
-        <h1>Ranking</h1>
-        <div class="info-usuario">
-          <p>usuario</p>
-          <p>Tentativas</p>
-          <p>Score</p>
-          <p>Acertos</p>
-        </div>
-          <div id="rankingList">
-            <p>
-              <span>usuario</span>
-              <span>tentativas</span>
-              <span>pontos</span>
-              <span>acertos</span>
-            </p>
-          </div> 
-        
-      </div>
     </main>
     
 
@@ -115,8 +112,6 @@
 </html>
 
 <script>
-   visualizarRankig()
-
   // NUMERO DE QUESTOES
   var perguntas = 0
 
@@ -247,9 +242,14 @@ function finalizar() {
           <span>Tentativas: ${tentativas.length}</span>
           <span>Resultado: <b class="baixo"> ${performance}</b></span>
         </p>
-        <a class="button-final" onclick="ranking()">
-        Refazer Quiz
-        </a>
+        <div class="buttons">
+          <a class="button-final" onclick="ranking()">
+          Refazer Quiz
+          </a>
+          <a href="ranking.html" class="button-final" onclick="visualizarRankig()" onclick="ranking()">
+            Ranking
+          </a>
+        </div>
       </div>
     </div>
     `
@@ -268,9 +268,14 @@ function finalizar() {
           <span>Tentativas: ${tentativas.length}</span>
           <span>Resultado: <b class="medio"> ${performance}</b></span>  
         </p>
-        <a class="button-final" onclick="ranking()">
-        Refazer Quiz
-        </a>
+        <div class="buttons">
+          <a class="button-final" onclick="ranking()">
+          Refazer Quiz
+          </a>
+          <a href="ranking.html" class="button-final" onclick="visualizarRankig()" onclick="ranking()">
+            Ranking
+          </a>
+        </div>
       </div>
     </div>
     `
@@ -290,9 +295,14 @@ function finalizar() {
           <span>Resultado: <b class="alto"> ${performance} </b></span>
           
         </p>
-        <button class="button-final" onclick="ranking()">
-        Refazer Quiz
-        </button>
+        <div class="buttons">
+          <a class="button-final" >
+          Refazer Quiz
+          </a>
+          <a href="ranking.html" class="button-final" onclick="visualizarRankig() onclick="ranking()">
+            Ranking
+          </a>
+        </div>
       </div>
     </div>
     `
@@ -310,7 +320,7 @@ function ranking() {
 
   var tamanhoLista = performanceTotal.length
 
-  rankingList.innerHTML = ""
+  // rankingList.innerHTML = ""
 
   for (var i = 0; i < tamanhoLista; i++) {
     var scoreAtual = performanceTotal[i]
@@ -325,16 +335,12 @@ function ranking() {
       menor = scoreAtual
     }
 
-    rankingList.innerHTML += ` 
-
-    <p>
-      <span>${nomeUsuario} </span>
-      <span>${tentativaAtual}</span>
-      <span>${scoreAtual} </span>
-      <span>${acertosAtual}</span>
-    </p>      
-
-     <br>`
+    // rankingList.innerHTML += `<p>
+    //   <span>${nomeUsuario} </span>
+    //   <span>${tentativaAtual}</span>
+    //   <span>${scoreAtual} </span>
+    //   <span>${acertosAtual}</span>
+    // </p>   `
     
   }
       
@@ -382,53 +388,6 @@ function ranking() {
   return false;
 }
 
-function visualizarRankig() {
-        fetch("/usuarios/mostrar", {
-            method: 'GET'
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    console.log("nenhuma resposta encontrada")
-                }
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    rankingList.innerHTML = "";
-                    for (var i = 0; i < 3; i++) {
-                        var usuario = resposta[i];
-
-                        rankingList.innerHTML += `<p>
-                                                  <span> ${i + 1}º </span>
-                                                  <span>${usuario.nickname}</span>
-                                                  <span>${ranking.tentativas}</span>
-                                                  <span>${ranking.score}</span>
-                                                  <span>${ranking.acertos}</span>
-                                                </p> `
-
-                   
-
-                    }
-
-                    // for (var i = 3; i < resposta.length; i++) {
-                    //     var user = resposta[i];
-
-                    //     otherPlayersList.innerHTML += `${i + 1}º lugar <div class="ranking-item"> <h3>${user.nickname}</h3> 
-                    // <p> ${user.pontos} </p> </div> <br> `
-                    // }
-
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-
-        });
-
-
-    }
 var questoes = [{
   numero: "1/10",
   questao: "Qual é o personagem principal de One Piece?",
@@ -457,6 +416,16 @@ var questoes = [{
     { text: "Portas D. Ace", correta: true},
     { text: "Roronoa Zoro", correta: false},
     { text: "Sanji", correta:false}
+  ]
+},
+{
+    numero: "4/10",
+    questao: "Quem é o Homem mais forte do mundo de One Piece",
+    respostas: [
+    { text: "Money D. Luffy", correta: false},
+    { text: "Barba Branca", correta: true},
+    { text: "Roronoa Zoro", correta: false},
+    { text: "Kaido", correta:false}
   ]
 }
 ]

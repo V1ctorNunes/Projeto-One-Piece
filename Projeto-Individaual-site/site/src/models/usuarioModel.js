@@ -26,13 +26,22 @@ function mostrar() {
     ranking.score AS Pontos,
     ranking.acertos AS Acertos
 	from ranking join usuario
-    on ranking.fkUsuario = usuario.idUsuario;
+    on ranking.fkUsuario = usuario.idUsuario
+	order by ranking.score desc;
       `;
+  
+      return database.executar(instrucao);
+  }
+
+  function validacao() {
+    var instrucao = `
+    select idUsuario from usuario;`;
   
       return database.executar(instrucao);
   }
 module.exports = {
     entrar,
     cadastrar,
-    mostrar
+    mostrar,
+    validacao
 };

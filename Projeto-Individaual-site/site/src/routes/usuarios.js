@@ -16,4 +16,8 @@ router.post("/autenticar", function (req, res) {
 router.get("/mostrar", function (req, res) {
     usuarioController.mostrar(req, res);
 });
+
+router.get("/validacao", function (req, res) {
+    usuarioController.validacao(req, res);
+});
 module.exports = router;

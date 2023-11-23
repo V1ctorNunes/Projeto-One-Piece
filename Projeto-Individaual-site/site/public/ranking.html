@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style-home.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link rel="icon" href="./assets/bandeira-luffy-removebg-preview.png">
-  <title>Home</title>
-</head>
-<body>
-  <!-- INICIO VIDEO DE FUNDO DA TELA -->
-  <div id="background">
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-ranking.css">
+    <link rel="icon" href="./assets/bandeira-luffy-removebg-preview.png">
+    <title>Ranking</title>
+ </head>
+ <body>
+ <!-- INICIO VIDEO DE FUNDO DA TELA -->
+ <div id="background">
     <video loop muted autoplay>
       <source src="./assets/abertura-onepiece-atualizado.mp4">
     </video>
@@ -37,13 +36,13 @@
       </ul>
 
       <div class="navigation_login_and_cadastro">  
-        <div class="button_login ">
+        <!-- <div class="button_login">
           <a href="./TelaLogin.html">Login</a>
         </div>
-        <div class="button_cadastro ">
+        <div class="button_cadastro">
           <a href="./TelaCadastro.html">Cadastro</a>
-        </div>
-        <p class="perfil esconder">
+        </div> -->
+        <p class="perfil">
           <a href="">
           <span> Perfil </span>
           <i class="bi bi-person-circle"></i>
@@ -55,19 +54,28 @@
 
     <!-- MAIN -->
     <main>
-      <div class="main-info">
-        <img src="./assets/onepiece.png" width="430px">
-
-        <p>
-          Esse é o meu Projeto-Individual sobre One Piece, clicando no botão abaixo você será direcionado para um quiz com o tema do Projeto, se quiser saber mais sobre o meu Projeto, e o porque eu escolhi esse tema, aperte <a class="sobreProjeto" href="TelaSobre.html">AQUI</a> ou acesse "Sobre o Projeto" no menu Superior.
-        </p>
-
-        <div>
-          <a href="TelaQuiz2.html">Quiz</a>
+        <div class="ranking">
+            <h1>Ranking</h1>
+            <div class="info-usuario">
+              <p>posição</p>
+              <p>usuario</p>
+              <p>Tentativas</p>
+              <p>Score</p>
+              <p>Acertos</p>
+            </div>
+              <div id="rankingList">
+                <p>
+                  <span>usuario</span>
+                  <span>tentativas</span>
+                  <span>pontos</span>
+                  <span>acertos</span>
+                </p>
+              </div> 
+            
         </div>
-      </div>
-      <img src="./assets/bando-luffy-PhotoRoom.png-PhotoRoom.png" width="600px">
     </main>
+
+    
   </div>
 
   <footer> 
@@ -92,13 +100,15 @@
       </p>
     </div>
   </footer>
+  
 </body>
 </html>
 
 <script>
+   visualizarRankig()
 
-  function validacao() {
-        fetch("/usuarios/validacao", {
+   function visualizarRankig() {
+        fetch("/usuarios/mostrar", {
             method: 'GET'
         }).then(function (resposta) {
 
@@ -114,9 +124,13 @@
                     for (var i = 0; i < 7; i++) {
                         var usuario = resposta[i];
 
-                       if (usuario.idUsuario == null || usuario.idUsuario == undefined) {
-                        alert("FAÇA LOGIN")
-                       }
+                        rankingList.innerHTML += `<p>
+                                                  <span> ${i + 1}º </span>
+                                                  <span>${usuario.Nickname}</span>
+                                                  <span>${usuario.Tentativas}</span>
+                                                  <span>${usuario.Pontos}</span>
+                                                  <span>${usuario.Acertos}</span>
+                                                </p> `
 
                    
 
