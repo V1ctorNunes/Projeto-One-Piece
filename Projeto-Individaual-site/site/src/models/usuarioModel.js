@@ -22,13 +22,12 @@ function cadastrar(nome, nickname, email, senha) {
 function mostrar() {
     var instrucao = `
     SELECT usuario.nickname AS Nickname, 
-	ranking.tentativas AS Tentativas,
+	sum(ranking.tentativas) AS Tentativas,
     ranking.score AS Pontos,
     ranking.acertos AS Acertos
 	from ranking join usuario
     on ranking.fkUsuario = usuario.idUsuario
-	order by ranking.score desc;
-      `;
+    group by usuario.nickname;`;
   
       return database.executar(instrucao);
   }

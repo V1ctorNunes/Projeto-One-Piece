@@ -103,13 +103,15 @@ header {
   width: 80px;
   background-color: orange;
   transition: all 0.4s;
+  text-decoration: none;
   border-radius: 0 100px 0 100px;
 }
 
 .button_login a {
-  margin-right: 10px;
-  font-weight: 500;
   color: black;
+  margin-right: 10px;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .button_login:hover {
@@ -122,11 +124,13 @@ header {
 
 .button_cadastro a {
   color: black;
+  text-decoration: none;
   margin-right: 45px;
   font-weight: 500;
 }
 
 .button_cadastro {
+  text-decoration: none;
   display: flex;
   justify-content: center;
   background-color: white;
@@ -147,8 +151,6 @@ header {
   height: 30px;
   list-style: none;
   text-decoration: none;
-
-
 }
 
 
@@ -192,6 +194,7 @@ header {
 .esconder {
   display: none;
 }
+
 
 /* main */
 main {

@@ -22,29 +22,28 @@
       
 
       <ul class="navigation">
-        <ul class="navigation">
-          <li>
-            <a href="index.html" class="navigation__link">Home</a>
-          </li>
-          <li>
-            <a href="TelaPersonagens.html" class="navigation__link">Personagens</a>
-          </li>
-          <li>
-            <a href="TelaSobre.html" class="navigation__link">Sobre o Projeto</a>
-          </li>
-          <li>
-            <a href="ranking.html" class="navigation__link">Ranking</a>
-          </li>
-        </ul>
+        <li>
+          <a href="index.html" class="navigation__link">Home</a>
+        </li>
+        <li>
+          <a href="TelaPersonagens.html" class="navigation__link">Personagens</a>
+        </li>
+        <li>
+          <a href="TelaSobre.html" class="navigation__link">Sobre o Projeto</a>
+        </li>
+        <li id="ranking">
+          <a href="ranking.html" class="navigation__link">Ranking</a>
+        </li>
+      </ul>
 
-      <div class="navigation_login_and_cadastro">  
-         <!-- <div class="button_login">
+      <div class="navigation_login_and_cadastro" id="login_and_cadastro">  
+        <div class="button_login">
           <a href="TelaLogin.html">Login</a>
         </div>
         <div class="button_cadastro">
           <a href="./TelaCadastro.html">Cadastro</a>
-        </div> -->
-        <p class="perfil">
+        </div>
+        <p class="perfil esconder">
           <a href="">
           <span> Perfil </span>
           <i class="bi bi-person-circle"></i>
@@ -98,3 +97,62 @@
 </footer>
 </body>
 </html>
+
+<script>
+
+var idUsuario = sessionStorage.ID_USUARIO
+  validacao()
+
+
+  function validacao() {
+    var login = document.querySelector('.button_login')
+    var cadastro = document.querySelector('.button_cadastro')
+    var perfil = document.querySelector('.perfil')
+    var ranking = document.getElementById('ranking')
+
+  if (idUsuario == undefined) {
+    login.classList.remove('esconder')
+    cadastro.classList.remove('esconder')
+    ranking.classList.add('esconder')
+    perfil.classList.add('esconder')
+
+    } else {
+
+        fetch("/usuarios/validacao", {
+            method: 'GET'
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    console.log("nenhuma resposta encontrada")
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    login.classList.add('esconder')
+                    cadastro.classList.add('esconder')
+                    perfil.classList.remove('esconder')
+                    ranking.classList.remove('esconder')
+
+                
+
+                    // for (var i = 3; i < resposta.length; i++) {
+                    //     var user = resposta[i];
+
+                    //     otherPlayersList.innerHTML += `${i + 1}º lugar <div class="ranking-item"> <h3>${user.nickname}</h3> 
+                    // <p> ${user.pontos} </p> </div> <br> `
+                    // }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+
+        });
+      }
+
+    }
+</script>

@@ -46,17 +46,16 @@ delete from ranking where fkUsuario = 6;
 truncate table ranking;
       
 SELECT usuario.nickname AS Nickname, 
-	ranking.tentativas AS Tentativas,
+	sum(ranking.tentativas) AS Tentativas,
     ranking.score AS Pontos,
     ranking.acertos AS Acertos
 	from ranking join usuario
     on ranking.fkUsuario = usuario.idUsuario
-	order by ranking.score desc;
+    group by usuario.nickname;
+    
       
 insert into usuario values 
-	(null, 'Victor', 'Vitin', 'vitin@hotmail.com', '1234');
-
-insert into usuario values 
+	(null, 'Victor', 'Vitin', 'vitin@hotmail.com', '1234'),
 	(null, 'Thiago', 'Tigas', 'tigas@hotmail.com', '1234'),
     (null, 'Vitor', 'Hugo', 'hugo@hotmail.com', '1234'),
     (null, 'Guto', 'Gutin', 'gutin@hotmail.com', '1234'),
@@ -72,8 +71,9 @@ insert into ranking values
 (5, '5', '1', '55', '1');
 
 insert into ranking values 
-	(1, '1', '3', '115', '3');
+(6, 1, '6', '120', '4');
 
+update ranking set Tentativas = 5 where fkUsuario = 1;
 create table historico_tentativas (
     idHistorico int primary key auto_increment,
     fkUsuario int,

@@ -346,6 +346,8 @@ function ranking() {
       
   // ENVIANDO PARA O BANCO
      // fetch envia para rotas
+
+     
      fetch("/quiz/ranking", {
     method: "POST",
     headers: {
@@ -388,6 +390,62 @@ function ranking() {
   return false;
 }
 
+var idUsuario = sessionStorage.ID_USUARIO
+  validacao()
+
+
+  function validacao() {
+    var login = document.querySelector('.button_login')
+    var cadastro = document.querySelector('.button_cadastro')
+    var perfil = document.querySelector('.perfil')
+    var ranking = document.getElementById('ranking')
+
+  if (idUsuario == undefined) {
+    login.classList.remove('esconder')
+    cadastro.classList.remove('esconder')
+    ranking.classList.add('esconder')
+    perfil.classList.add('esconder')
+
+    } else {
+
+        fetch("/usuarios/validacao", {
+            method: 'GET'
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    console.log("nenhuma resposta encontrada")
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    login.classList.add('esconder')
+                    cadastro.classList.add('esconder')
+                    perfil.classList.remove('esconder')
+                    ranking.classList.remove('esconder')
+
+                
+
+                    // for (var i = 3; i < resposta.length; i++) {
+                    //     var user = resposta[i];
+
+                    //     otherPlayersList.innerHTML += `${i + 1}º lugar <div class="ranking-item"> <h3>${user.nickname}</h3> 
+                    // <p> ${user.pontos} </p> </div> <br> `
+                    // }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+
+        });
+      }
+
+    }
+
 var questoes = [{
   numero: "1/10",
   questao: "Qual é o personagem principal de One Piece?",
@@ -426,6 +484,16 @@ var questoes = [{
     { text: "Barba Branca", correta: true},
     { text: "Roronoa Zoro", correta: false},
     { text: "Kaido", correta:false}
+  ]
+},
+{
+    numero: "5/10",
+    questao: "Qual o nome do Imediato do Monkey D. Luffy",
+    respostas: [
+    { text: "Brook", correta: false},
+    { text: "Nami", correta: false},
+    { text: "Roronoa Zoro", correta: true},
+    { text: "Sanji", correta:false}
   ]
 }
 ]
