@@ -42,7 +42,7 @@
           <a href="./TelaCadastro.html">Cadastro</a>
         </div> -->
         <p class="perfil">
-          <a href="">
+          <a href="perfil.html">
           <span> Perfil </span>
           <i class="bi bi-person-circle"></i>
           </a>
@@ -117,7 +117,7 @@
 
   // MATRIZES
   var idUsuario = sessionStorage.ID_USUARIO
-  var nomeUsuario = sessionStorage.NOME_USUARIO
+  var nickUsuario = sessionStorage.NOME_USUARIO
   var totalCorretas = 0
   var score = 0
   var contador = 0
@@ -223,6 +223,7 @@ function finalizar() {
   tentativas.push(contador)
   
   ranking()
+  perfil()
   
 
   proximaPergunta.classList.add('esconder')
@@ -243,9 +244,6 @@ function finalizar() {
           <span>Resultado: <b class="baixo"> ${performance}</b></span>
         </p>
         <div class="buttons">
-          <a class="button-final" onclick="ranking()">
-          Refazer Quiz
-          </a>
           <a href="ranking.html" class="button-final" onclick="visualizarRankig()" onclick="ranking()">
             Ranking
           </a>
@@ -269,9 +267,6 @@ function finalizar() {
           <span>Resultado: <b class="medio"> ${performance}</b></span>  
         </p>
         <div class="buttons">
-          <a class="button-final" onclick="ranking()">
-          Refazer Quiz
-          </a>
           <a href="ranking.html" class="button-final" onclick="visualizarRankig()" onclick="ranking()">
             Ranking
           </a>
@@ -296,9 +291,6 @@ function finalizar() {
           
         </p>
         <div class="buttons">
-          <a class="button-final" >
-          Refazer Quiz
-          </a>
           <a href="ranking.html" class="button-final" onclick="visualizarRankig() onclick="ranking()">
             Ranking
           </a>
@@ -390,61 +382,53 @@ function ranking() {
   return false;
 }
 
-var idUsuario = sessionStorage.ID_USUARIO
-  validacao()
 
+    function perfil() {
 
-  function validacao() {
-    var login = document.querySelector('.button_login')
-    var cadastro = document.querySelector('.button_cadastro')
-    var perfil = document.querySelector('.perfil')
-    var ranking = document.getElementById('ranking')
+// fetch envia para rotas
+fetch("/usuarios/perfil", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  // body ele leva os dados para usuario.js
+  body: JSON.stringify({
+    // crie um atributo que recebe o valor recuperado aqui
+    // Agora vá para o arquivo routes/usuario.js
+    nicknameServer: nickUsuario,
+    tentativasServer: tentativas,
+    scoreServer: performance,
+    idUsuarioServer: idUsuario
+  }),
+})
 
-  if (idUsuario == undefined) {
-    login.classList.remove('esconder')
-    cadastro.classList.remove('esconder')
-    ranking.classList.add('esconder')
-    perfil.classList.add('esconder')
+//casso a requisição de certo entra no then
+.then(function (resposta) {
 
-    } else {
+if (resposta.ok) {
+  cardErro.style.display = "block";
 
-        fetch("/usuarios/validacao", {
-            method: 'GET'
-        }).then(function (resposta) {
+  mensagem_erro.innerHTML =
+    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    console.log("nenhuma resposta encontrada")
-                }
+  setTimeout(() => {
+    window.location = "perfil.html";
+  }, "2000");
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+  // limparFormulario();
+  // finalizarAguardar();
+} 
 
-                    login.classList.add('esconder')
-                    cadastro.classList.add('esconder')
-                    perfil.classList.remove('esconder')
-                    ranking.classList.remove('esconder')
+})
 
-                
+  // caso de errado entra no catch
+  .catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+  });
 
-                    // for (var i = 3; i < resposta.length; i++) {
-                    //     var user = resposta[i];
+return false;
 
-                    //     otherPlayersList.innerHTML += `${i + 1}º lugar <div class="ranking-item"> <h3>${user.nickname}</h3> 
-                    // <p> ${user.pontos} </p> </div> <br> `
-                    // }
-
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-
-        });
-      }
-
-    }
+}
 
 var questoes = [{
   numero: "1/10",

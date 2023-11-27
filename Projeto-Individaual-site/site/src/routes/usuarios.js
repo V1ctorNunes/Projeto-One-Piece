@@ -20,4 +20,9 @@ router.get("/mostrar", function (req, res) {
 router.get("/validacao", function (req, res) {
     usuarioController.validacao(req, res);
 });
+
+router.post("/perfil", function (req, res) {
+    usuarioController.perfil(req, res);
+});
+
 module.exports = router;

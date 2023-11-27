@@ -29,8 +29,8 @@
         <li>
           <a href="TelaSobre.html" class="navigation__link">Sobre o Projeto</a>
         </li>
-        <li>
-          <a href="ranking.html" class="navigation__link">Ranking</a>
+        <li id="ranking">
+          <a href="ranking.html" class="navigation__link esconder">Ranking</a>
         </li>
       </ul>
 
@@ -172,10 +172,12 @@ function eyeEsconder() {
                     var login = document.querySelector('.button_login')
                     var cadastro = document.querySelector('.button_cadastro')
                     var perfil = document.querySelector('.perfil')
+                    var ranking = document.getElementById('ranking')
 
                     login.classList.add('esconder')
                     cadastro.classList.add('esconder')
                     perfil.classList.remove('esconder')
+                    ranking.classList.remove('esconder')
 
                     setTimeout(function () {
                         window.location = "index.html";
@@ -203,4 +205,5 @@ function eyeEsconder() {
         
     }
 
+  
 </script>
