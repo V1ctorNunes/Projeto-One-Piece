@@ -8,7 +8,8 @@ function buscarUltimasMedidas(idUsuario) {
       ranking.score AS Pontos
       from ranking join usuario 
       on ranking.fkUsuario = usuario.idUsuario
-      where usuario.idUsuario = ${idUsuario}`;
+      where usuario.idUsuario = ${idUsuario}
+      `;
     
     
 

@@ -192,7 +192,7 @@ function sanji() {
     <br><br>
     Após diversos conflitos com diferentes inimigos, Sanji aceita o convite de Luffy apenas no final do Arco Baratie, no episódio 30. Sua motivação é seu sonho de encontrar o suposto paraíso dos chefs, All Blue. Esse lendário mar místico seria o ponto de encontro de East Blue, West Blue, North Blue e South Blue, e contaria com com vida selvagem dos quatro oceanos. Quinto integrante do grupo, no qual passou a atuar como cozinheiro, Sanji se destacou rapidamente. Atualmente figura como um dos quatro melhores lutadores da tripulação - junto a Luffy, Zoro e Jinbe - e detentor da terceira maior recompensa da equipe, no valor de $1.032.000.000.
     <br><br>
-    <h3>Poderes>/h3>
+    <h3>Poderes</h3>
     Capacidades físicas sobre-humanas: seu treinamento lhe proporcionaram força, velocidade e resistência inacreditáveis Sanji pe capaz de destruir até mesmo metal apenas com sua força física.
     Estilo de luta único: unindo técnicas de lutas como capoeira, Taekwondo e savate, Sanji desenvolveu seu próprio estilo de luta, criando técnicas com as quais consegue, por exemplo: correr embaixo da água, saltar de grandes alturas e se locomover criando barreiras sonoras no ar com sua velocidade.
     Diable Jambe: nesta técnica, Sanji eleva a temperatura de suas pernas até que elas ganhem a aparência e o poder de fogo vivo.

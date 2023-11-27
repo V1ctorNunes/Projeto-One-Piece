@@ -124,7 +124,7 @@ main {
   flex-direction: column;
   background: linear-gradient(140deg, rgba(0, 0, 0, 0.696) 10%, rgba(255, 166, 0, 0.87) 50%, rgba(0, 0, 0, 0.696) 90%);
   height: fit-content;
-  width: 770px;
+  width: 700px;
   max-width: 1600px;
   border: 2px solid white;
   border-radius: 10px;

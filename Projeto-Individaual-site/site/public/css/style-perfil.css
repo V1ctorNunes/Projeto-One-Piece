@@ -216,7 +216,8 @@ main {
 }
 
 .perfil-container {
-  margin-top: 17%;
+  margin-top: 10%;
+  margin-bottom: 10%;
   display: flex;
   column-gap: 300px;
 }
@@ -238,10 +239,15 @@ main {
 }
 
 .grafico {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   margin-top: 10%;
+  margin-left: 10%;
   background-color: rgba(255, 255, 255, 0.673);
   border-radius: 10px;
+  width: 80%;
 }
 
 .grafico h2 {
@@ -252,7 +258,7 @@ main {
 
 /* FOOTER */
 footer {
-  margin-top: 27%;
+  margin-top: 60%;
   display: flex;
   width: auto;
   height: auto;

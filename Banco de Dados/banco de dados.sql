@@ -45,17 +45,20 @@ insert into usuario values
     (null, 'Jose', 'ze', 'jose@hotmail.com', '1234');
 
 insert into ranking values 
-	(1, '1', '3', '115', '3'),
+	(1, '1', '1', '115', '3'),
 	(2, '2', '1', 76, '2'),
-	(3, '3', '2', '115', '3'),
-	(4, '4', '3', '115', '3'),
+	(3, '3', '1', '115', '3'),
+	(4, '4', '1', '115', '3'),
 	(5, '5', '1', '55', '1');
 
 update ranking set Tentativas = 11 WHERE fkUsuario = 6;
 
 select * from ranking;
 select * from usuario;
+
+
     
+    -- SELECT RANKI
 SELECT usuario.nickname AS Nickname,
       sum(ranking.tentativas) AS Tentativas,
       max(ranking.score) AS Pontos,
@@ -64,6 +67,7 @@ SELECT usuario.nickname AS Nickname,
       on ranking.fkUsuario = usuario.idUsuario
       group by usuario.nickname 
       order by Pontos desc;
+      
       
 SELECT ranking.idQuiz AS idQuiz,
 	   max(ranking.score) AS Pontos, 
@@ -98,12 +102,14 @@ SELECT ranking.idQuiz AS idQuiz,
         on ranking.fkUsuario = usuario.idUsuario
       WHERE ranking.fkUsuario = 8;
       
+      -- SELECT PERFIL
 	select usuario.nickname  AS Nickname,
     ranking.tentativas AS Tentativas,
     ranking.score AS Pontos
     from ranking join usuario 
     on ranking.fkUsuario = usuario.idUsuario
-    where usuario.idUsuario = 8;
+    where usuario.idUsuario = 1
+    order by ranking.score desc;
     
     
       
