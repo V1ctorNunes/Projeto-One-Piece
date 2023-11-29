@@ -147,8 +147,6 @@ header {
   height: 30px;
   list-style: none;
   text-decoration: none;
-
-
 }
 
 .sobreProjeto {
@@ -168,11 +166,11 @@ header {
   font-size: 35px;
 }
 
-.perfil span{
+.perfil span {
   color: white;
 }
 
-.perfil a{
+.perfil a {
   text-decoration: none;
   display: flex;
   justify-content: center;

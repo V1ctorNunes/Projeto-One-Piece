@@ -159,10 +159,16 @@ function plotarGrafico(resposta, idUsuario) {
       console.log(resposta)
 
       // Inserindo valores recebidos em estrutura para plotar o gráfico
-      for (i = 0; i < resposta.length; i++) {
+
+      var contador = 0
+
+
+      for (i = resposta.length - 1; i > 0; i--) {
           var registro = resposta[i];
+          
+          contador++
           // labels.push(registro.Tentativas);
-          dados.labels.push(i+1)
+          dados.labels.push(contador)
           dados.datasets[0].data.push(registro.Pontos);
 
           // dados.datasets[1].labels.push(registro.tentativas);

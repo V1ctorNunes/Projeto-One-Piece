@@ -33,8 +33,11 @@ fkUsuario int,
 foreign key (fkUsuario) references usuario(idUsuario),
 tentativas int,
 score int,
-acertos int
+acertos int,
+dtRanking datetime default current_timestamp
 );
+
+drop table ranking;
     
 insert into usuario values 
 	(null, 'Victor', 'Vitin', 'vitin@hotmail.com', '1234'),
@@ -45,73 +48,46 @@ insert into usuario values
     (null, 'Jose', 'ze', 'jose@hotmail.com', '1234');
 
 insert into ranking values 
-	(1, '1', '1', '115', '3'),
-	(2, '2', '1', 76, '2'),
-	(3, '3', '1', '115', '3'),
-	(4, '4', '1', '115', '3'),
-	(5, '5', '1', '55', '1');
+	(1, '1', '1', '115', '3', current_timestamp),
+	(2, '2', '1', 76, '2', current_timestamp),
+	(3, '3', '1', '115', '3', current_timestamp),
+	(4, '4', '1', '115', '3', current_timestamp),
+	(5, '5', '1', '55', '1', current_timestamp);
+    
 
-update ranking set Tentativas = 11 WHERE fkUsuario = 6;
+update ranking set Tentativas = 1 WHERE fkUsuario = 1;
 
 select * from ranking;
 select * from usuario;
 
-
+update usuario set email = 'paulinho@hotmail.com' where idUsuario = 5;
     
-    -- SELECT RANKI
+    -- SELECT RANKING
 SELECT usuario.nickname AS Nickname,
       sum(ranking.tentativas) AS Tentativas,
       max(ranking.score) AS Pontos,
       max(ranking.acertos) AS Acertos
       FROM usuario JOIN ranking
       on ranking.fkUsuario = usuario.idUsuario
-      group by usuario.nickname 
-      order by Pontos desc;
+      group by Nickname;		
       
-      
-SELECT ranking.idQuiz AS idQuiz,
-	   max(ranking.score) AS Pontos, 
-	   sum(ranking.tentativas) AS Tentativas
-       From ranking join usuario
-       on ranking.fkUsuario = usuario.idUsuario
-	   group by idQuiz
-	   order by Pontos desc;
-       
-       SELECT usuario.nickname  AS Nickname,
-      max(ranking.score) AS Pontos, 
-      sum(ranking.tentativas) AS Tentativas
-        From ranking join usuario
-        on ranking.fkUsuario = usuario.idUsuario
-      WHERE usuario.idUsuario = 1;
-      
-      select perfil.nickname AS Nickname,
-			 max(perfil.score) AS Pontos, 
-			 sum(perfil.tentativas)  AS Tentativas
-		     from perfil join usuario
-		     on fkUsuario = idUsuario
-		     group by perfil.nickname;
-      
-      truncate table perfil;
-      select * from perfil;
-      
-      
-      SELECT usuario.nickname  AS Nickname,
-      max(ranking.score) AS Pontos, 
-      sum(ranking.tentativas)  AS Tentativas
-        From ranking join usuario
-        on ranking.fkUsuario = usuario.idUsuario
-      WHERE ranking.fkUsuario = 8;
       
       -- SELECT PERFIL
 	select usuario.nickname  AS Nickname,
     ranking.tentativas AS Tentativas,
-    ranking.score AS Pontos
+    ranking.score AS Pontos,
+    ranking.dtranking AS Horario
     from ranking join usuario 
-    on ranking.fkUsuario = usuario.idUsuario
-    where usuario.idUsuario = 1
-    order by ranking.score desc;
+    on ranking.fkUsuario = usuario.idUsuario;
     
+    select usuario.nickname  AS Nickname,
+      count(ranking.tentativas) AS Tentativas,
+      max(ranking.score) AS Pontos,
+	  max(ranking.dtranking) AS Horario
+      from ranking join usuario 
+      on ranking.fkUsuario = usuario.idUsuario
+      where usuario.idUsuario = 1
+      order by Horario;
     
-      
-    
+
     

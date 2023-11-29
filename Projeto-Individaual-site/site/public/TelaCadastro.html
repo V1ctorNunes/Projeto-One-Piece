@@ -51,13 +51,23 @@
       </div>
     </header>
   
+     
     <!-- CADASTRO BOX -->
-    <div class="mensagem-null" id="cardErro" style="background-color: white; display: none;">
-      <div id="mensagem_erro">erro
+    <main>
+     
+      <!-- MENSAGEM DE ERRO -->
+     <div class="mensagem-null esconder" id="cardErro">
+      <div id="mensagem_erro">
+        <p class="erro-title">ERRO!!</p>
+        <p class="erro-sub">Credenciais incorretas, ou algum campo vazio.</p>
+        <p class="mensagem-de-erro">
+          As informações fornecidas não correspondem às nossas gravações. Verifique se o e-mail e a senha estão corretos e tente novamente.
+          Certifique-se de preencher todos os campos obrigatórios antes de enviar o cadastro. Tanto o e-mail quanto a senha são informações cruciais.
+        </p>
       </div>
     </div>
-    <main>
-      <div class="cadastro-box">
+
+      <div class="cadastro-box " id="cadastro-box">
         <div class="img-bandeira">
           <p>
             <img src="./assets/bandeira-luffy-removebg-preview.png">
@@ -79,6 +89,7 @@
               <i class="bi bi-person"></i> <input type="text" placeholder="Digite seu nickname" id="nickname_input"> 
           </div> 
          </div>
+         
 
          <div class="text-input"> Email: <br>
 
@@ -101,7 +112,7 @@
           </div> 
          </div>
          <div class="mensagem">
-          <p>Ja tem conta? <a href="">Faça o seu Login</a></p>
+          <p>Ja tem conta? <a href="TelaLogin.html">Faça o seu Login</a></p>
          </div> 
          <div class="button-style">
            <button class="button-cadastro" onclick="cadastro()">cadastro</button>
@@ -167,8 +178,10 @@ function eyeEsconder2() {
 
 function cadastro() {
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+    var erro = document.getElementById('cardErro') 
+    var cadastro = document.getElementById('cadastro-box') 
+
+
     var nomeVar = nome_input.value;
     var nicknameVar = nickname_input.value;
     var emailVar = email_input.value;
@@ -179,13 +192,48 @@ function cadastro() {
       nicknameVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confSenhaVar == ""
+      confSenhaVar == "" ||
+      emailVar.indexOf('!') >= 0 ||
+      emailVar.indexOf('#') >= 0 ||
+      emailVar.indexOf('$') >= 0 ||
+      emailVar.indexOf('%') >= 0 ||
+      emailVar.indexOf('&') >= 0 ||
+      emailVar.indexOf('*') >= 0 ||
+      emailVar.indexOf('(') >= 0 ||
+      emailVar.indexOf(')') >= 0 ||
+      emailVar.indexOf('^') >= 0 ||
+      emailVar.indexOf('-') >= 0 ||
+      emailVar.indexOf('_') >= 0 ||
+      emailVar.indexOf('=') >= 0 ||
+      emailVar.indexOf('+') >= 0 ||
+      emailVar.indexOf('{') >= 0 ||
+      emailVar.indexOf('}') >= 0 ||
+      emailVar.indexOf('[') >= 0 ||
+      emailVar.indexOf(']') >= 0 ||
+      emailVar.indexOf('"') >= 0 ||
+      emailVar.indexOf(';') >= 0 ||
+      emailVar.indexOf('.') >= 0 ||
+      emailVar.indexOf('/') >= 0 ||
+      emailVar.indexOf('>') >= 0 ||
+      emailVar.indexOf('<') >= 0 ||
+      emailVar.indexOf(',') >= 0 ||
+      emailVar.indexOf(':') >= 0 ||
+      senhaVar.length < 5
     ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+      cadastro.style.display = "none"
+      erro.style.display = "flex";
 
     }
+    
+    else if (
+    emailVar.indexOf('@hotmail.com') >= 0 ||
+    emailVar.indexOf('@gmail.com') >= 0 ||
+    emailVar.indexOf('@hotmail.com') >= 0 ||
+    emailVar.indexOf('@gmail.com') >= 0 ||
+    emailVar.indexOf('@sptech.school') >= 0 
+
+    ) {
+
     // fetch envia para rotas
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -230,6 +278,8 @@ function cadastro() {
 
     return false;
   }
+} 
+
 
   var idUsuario = sessionStorage.ID_USUARIO
   validacao()

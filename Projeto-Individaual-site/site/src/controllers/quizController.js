@@ -6,6 +6,7 @@ function ranking(req, res) {
     var tentativas = req.body.tentativasServer;
     var score = req.body.scoreServer;
     var acertos = req.body.acertosServer;
+
     
 
     // Faça as validações dos valores

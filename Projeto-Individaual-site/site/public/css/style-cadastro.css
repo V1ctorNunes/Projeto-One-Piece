@@ -102,17 +102,70 @@ header {
   width: 150px;
 }
 
+.button_login {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  background-color: orange;
+  transition: all 0.4s;
+  border-radius: 0 100px 0 100px;
+}
+
+.button_login a {
+  margin-right: 10px;
+  font-weight: 500;
+  color: black;
+}
+
+.button_login:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+  cursor: pointer;
+  transition: all 0.4s;
+  background-color: white;
+}
+
+.button_cadastro a {
+  color: black;
+  margin-right: 45px;
+  font-weight: 500;
+}
+
+.button_cadastro {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  width: 120px;
+  transition: all 0.4s;
+  border-radius: 0 100px 0 100px;
+}
+
+.button_cadastro:hover {
+  cursor: pointer;
+  transition: all 0.4s;
+  background-color: orange;
+  transform: translateY(-5px);
+}
+
+.navigation_login_and_cadastro a {
+  width: 30px;
+  height: 30px;
+  list-style: none;
+  text-decoration: none;
+}
+
+
 
 .perfil i {
   color: white;
   font-size: 35px;
 }
 
-.perfil span{
+.perfil span {
   color: white;
 }
 
-.perfil a{
+.perfil a {
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -142,6 +195,34 @@ header {
 
 .esconder {
   display: none;
+}
+
+.mensagem-null {
+  margin-top: 50%;
+  justify-content: center;
+  background-color: white;
+  width: 400px;
+  height: 300px;
+  padding: 15px;
+  border: 4px solid rgb(255, 0, 0);
+  border-radius: 10px;
+}
+
+.erro-title {
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+  justify-content: center;
+  color: red;
+}
+
+.erro-sub {
+  font-weight: bold;
+}
+
+.mensagem-de-erro {
+  font-size: 15px;
+  text-align: justify;
 }
 
 /* CADASTRO */
