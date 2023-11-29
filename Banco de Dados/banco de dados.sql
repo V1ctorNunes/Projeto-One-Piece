@@ -58,6 +58,7 @@ insert into ranking values
 update ranking set Tentativas = 1 WHERE fkUsuario = 1;
 
 select * from ranking;
+
 select * from usuario;
 
 update usuario set email = 'paulinho@hotmail.com' where idUsuario = 5;
@@ -88,6 +89,6 @@ SELECT usuario.nickname AS Nickname,
       on ranking.fkUsuario = usuario.idUsuario
       where usuario.idUsuario = 1
       order by Horario;
-    
+      
 
     

@@ -64,10 +64,13 @@
           As informações fornecidas não correspondem às nossas gravações. Verifique se o e-mail e a senha estão corretos e tente novamente.
           Certifique-se de preencher todos os campos obrigatórios antes de enviar o cadastro. Tanto o e-mail quanto a senha são informações cruciais.
         </p>
+        <div class="bottao-erro">
+          <button class="fechar-botao" onclick="fechar()">OK!</button>
+        </div>
       </div>
     </div>
 
-      <div class="cadastro-box " id="cadastro-box">
+      <div class="cadastro-box  " id="cadastro-box">
         <div class="img-bandeira">
           <p>
             <img src="./assets/bandeira-luffy-removebg-preview.png">
@@ -176,6 +179,14 @@ function eyeEsconder2() {
   }
 }
 
+function fechar() {
+    var erro = document.getElementById('cardErro') 
+    var cadastro = document.getElementById('cadastro-box')
+
+    cadastro.style.display = "flex"
+      erro.style.display = "none";
+}
+
 function cadastro() {
 
     var erro = document.getElementById('cardErro') 
@@ -192,7 +203,15 @@ function cadastro() {
       nicknameVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      confSenhaVar == "" ||
+      confSenhaVar == "" 
+    ) {
+      cadastro.style.display = "none"
+      erro.style.display = "flex";
+
+      return false
+    }
+
+    if (
       emailVar.indexOf('!') >= 0 ||
       emailVar.indexOf('#') >= 0 ||
       emailVar.indexOf('$') >= 0 ||
@@ -202,8 +221,6 @@ function cadastro() {
       emailVar.indexOf('(') >= 0 ||
       emailVar.indexOf(')') >= 0 ||
       emailVar.indexOf('^') >= 0 ||
-      emailVar.indexOf('-') >= 0 ||
-      emailVar.indexOf('_') >= 0 ||
       emailVar.indexOf('=') >= 0 ||
       emailVar.indexOf('+') >= 0 ||
       emailVar.indexOf('{') >= 0 ||
@@ -212,23 +229,28 @@ function cadastro() {
       emailVar.indexOf(']') >= 0 ||
       emailVar.indexOf('"') >= 0 ||
       emailVar.indexOf(';') >= 0 ||
-      emailVar.indexOf('.') >= 0 ||
       emailVar.indexOf('/') >= 0 ||
       emailVar.indexOf('>') >= 0 ||
       emailVar.indexOf('<') >= 0 ||
       emailVar.indexOf(',') >= 0 ||
-      emailVar.indexOf(':') >= 0 ||
-      senhaVar.length < 5
+      emailVar.indexOf(':') >= 0 
     ) {
       cadastro.style.display = "none"
       erro.style.display = "flex";
 
+      return false
+    }
+      
+    if (senhaVar.length < 5) {
+      cadastro.style.display = "none"
+      erro.style.display = "flex";
+
+      return false
     }
     
-    else if (
+    if (
     emailVar.indexOf('@hotmail.com') >= 0 ||
     emailVar.indexOf('@gmail.com') >= 0 ||
-    emailVar.indexOf('@hotmail.com') >= 0 ||
     emailVar.indexOf('@gmail.com') >= 0 ||
     emailVar.indexOf('@sptech.school') >= 0 
 
