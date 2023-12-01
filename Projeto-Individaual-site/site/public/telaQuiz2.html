@@ -29,18 +29,18 @@
         <li>
           <a href="TelaSobre.html" class="navigation__link">Sobre o Projeto</a>
         </li>
-        <li>
+        <li id="ranking">
           <a href="ranking.html" class="navigation__link">Ranking</a>
         </li>
       </ul>
 
       <div class="navigation_login_and_cadastro">  
-         <!-- <div class="button_login">
+         <div class="button_login">
           <a href="TelaLogin.html">Login</a>
         </div>
         <div class="button_cadastro">
           <a href="./TelaCadastro.html">Cadastro</a>
-        </div> -->
+        </div>
         <p class="perfil">
           <a href="perfil.html">
           <span> Perfil </span>
@@ -58,7 +58,7 @@
           </p>
           
           <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam aperiam, error ipsam deleniti minima est alias amet sit aliquam laudantium sapiente delectus eius? Reprehenderit quia vel eos, beatae officiis et.
+            Seja bem-vindo ao emocionante universo de One Piece! Este quiz de 10 perguntas testará seus conhecimentos sobre a renomada obra de Eiichiro Oda. Prepare-se para mergulhar nas aventuras de Luffy e sua tripulação!
           </span>
         </div>
         <div class="questoes-container esconder">
@@ -86,7 +86,7 @@
     <footer> 
       <div class="footer__info">
         <p>
-          Aqui está minha resdes sociais caso queira reportar algum bug ou erro.
+          Aqui está minha redes sociais caso queira reportar algum bug ou erro.
         </p>
       </div>
   
@@ -240,7 +240,6 @@ function finalizar() {
         </p>
         <p class="mensagem-final"> 
           Voce acertou ${totalCorretas} de ${totalQuestoes} <br>
-          <span>Tentativas: ${tentativas.length}</span>
           <span>Resultado: <b class="baixo"> ${performance}</b></span>
         </p>
         <div class="buttons">
@@ -263,7 +262,6 @@ function finalizar() {
         </p>
         <p class="mensagem-final"> 
           Voce acertou ${totalCorretas} de ${totalQuestoes} <br>
-          <span>Tentativas: ${tentativas.length}</span>
           <span>Resultado: <b class="medio"> ${performance}</b></span>  
         </p>
         <div class="buttons">
@@ -286,7 +284,6 @@ function finalizar() {
         </p>
         <p class="mensagem-final"> 
           Voce acertou ${totalCorretas} de ${totalQuestoes} <br>
-          <span>Tentativas: ${tentativas.length}</span>
           <span>Resultado: <b class="alto"> ${performance} </b></span>
           
         </p>
@@ -384,8 +381,7 @@ function ranking() {
   return false;
 }
 
-
-    function perfil() {
+function perfil() {
 
 // fetch envia para rotas
 fetch("/usuarios/perfil", {
@@ -431,6 +427,54 @@ if (resposta.ok) {
 return false;
 
 }
+
+var idUsuario = sessionStorage.ID_USUARIO
+  validacao()
+
+function validacao() {
+    var login = document.querySelector('.button_login')
+    var cadastro = document.querySelector('.button_cadastro')
+    var perfil = document.querySelector('.perfil')
+    var ranking = document.getElementById('ranking')
+
+  if (idUsuario == undefined) {
+    login.classList.remove('esconder')
+    cadastro.classList.remove('esconder')
+    ranking.classList.add('esconder')
+    perfil.classList.add('esconder')
+
+    } else {
+
+        fetch("/usuarios/validacao", {
+            method: 'GET'
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    console.log("nenhuma resposta encontrada")
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    login.classList.add('esconder')
+                    cadastro.classList.add('esconder')
+                    perfil.classList.remove('esconder')
+                    ranking.classList.remove('esconder')
+
+              
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+
+        });
+      }
+
+    }
 
 var questoes = [{
   numero: "1/10",
@@ -480,6 +524,56 @@ var questoes = [{
     { text: "Nami", correta: false},
     { text: "Roronoa Zoro", correta: true},
     { text: "Sanji", correta:false}
+  ]
+},
+{
+    numero: "6/10",
+    questao: "Qual é a fruta do diabo que concede poder de esticar o corpo ao usuário?",
+    respostas: [
+    { text: "Gomu Gomu no Mi", correta: true},
+    { text: "Mera Mera no Mi", correta: false},
+    { text: "Hito Hito no Mi", correta: false},
+    { text: "Yami Yami no Mi", correta:false}
+  ]
+},
+{
+    numero: "7/10",
+    questao: "Qual é o objetivo principal de Luffy ao longo da série?",
+    respostas: [
+    { text: "Proteger sua tripulação", correta: false},
+    { text: "Se tornar o rei dos piratas", correta: true},
+    { text: "Encontrar o One Piece", correta: false},
+    { text: "Derrotar todos os Shichibukai", correta:false}
+  ]
+},
+{
+    numero: "8/10",
+    questao: "Qual é a ilha onde ocorre o arco 'Enies Lobby' na série",
+    respostas: [
+    { text: "Whole Cake Island", correta: false},
+    { text: "Sabaody Archipelago", correta: false},
+    { text: "Water 7", correta: true},
+    { text: "Thriller Bark", correta:false}
+  ]
+},
+{
+    numero: "9/10",
+    questao: "Quem é o fabricante de navios da tripulação dos Chapéus de Palha?",
+    respostas: [
+    { text: "Brook", correta: false},
+    { text: "Nami", correta: false},
+    { text: "Roronoa Zoro", correta: false},
+    { text: "Franky", correta:true}
+  ]
+},
+{
+    numero: "10/10",
+    questao: "Qual é a espada de Zoro que é conhecida por ser uma das Doze Espadas Supremas?",
+    respostas: [
+    { text: "Enma", correta: false},
+    { text: "Wado Ichimonji", correta: false},
+    { text: "Shusui", correta: true},
+    { text: "Sandai Kitetsu", correta:false}
   ]
 }
 ]
